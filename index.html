@@ -5,24 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- <script src="https://cdn.tailwindcss.com"></script> -->
 	<title>Turnos</title>
-	<style type="text/css">
-		body {
-			font-family: sans-serif;
-		}
-		.table{
-			border-collapse: collapse;
-			width: 8%;
-			float: left;
-			padding: 5px;
-			margin-left: 5px;
-		}
-		td,th{
-			border: 2px solid #969595;
-		}
-		.py-1{
-			padding-top: 15px;
-		}
-	</style>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://unpkg.com/@c3r38r170/c3tools"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js" integrity="sha512-+aXA9mgbUvFe0ToTlbt8/3vT7+nOgUmFw29wfFCsGoh8AZMRSU0p4WtOvC1vkF2JBrndPN2TuNZsHPAKPPxe8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 	<div>			
@@ -45,18 +30,45 @@
 	<div class="py-1"></div>
 	<hr>
 	<div class="py-1"></div>
-	<table class='table'><tbody id="mes-1"><tr><th colspan="2">Enero</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-2"><tr><th colspan="2">Febrero</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-3"><tr><th colspan="2">Marzo</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-4"><tr><th colspan="2">Abril</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-5"><tr><th colspan="2">Mayo</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-6"><tr><th colspan="2">Junio</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-7"><tr><th colspan="2">Julio</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-8"><tr><th colspan="2">Agosto</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-9"><tr><th colspan="2">Septiembre</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-10"><tr><th colspan="2">Octubre</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-11"><tr><th colspan="2">Noviembre</th></tr></tbody></table>			
-	<table class='table'><tbody id="mes-12"><tr><th colspan="2">Diciembre</th></tr></tbody></table>			
+	<div class="anio">
+		<div class="mes" id="mes-1">
+			<div class="mes-nombre">Enero</div>
+		</div>
+		<div class="mes" id="mes-2">
+			<div class="mes-nombre">Febrero</div>
+		</div>
+		<div class="mes" id="mes-3">
+			<div class="mes-nombre">Marzo</div>
+		</div>
+		<div class="mes" id="mes-4">
+			<div class="mes-nombre">Abril</div>
+		</div>
+		<div class="mes" id="mes-5">
+			<div class="mes-nombre">Mayo</div>
+		</div>
+		<div class="mes" id="mes-6">
+			<div class="mes-nombre">Junio</div>
+		</div>
+		<div class="mes" id="mes-7">
+			<div class="mes-nombre">Julio</div>
+		</div>
+		<div class="mes" id="mes-8">
+			<div class="mes-nombre">Agosto</div>
+		</div>
+		<div class="mes" id="mes-9">
+			<div class="mes-nombre">Septiembre</div>
+		</div>
+		<div class="mes" id="mes-10">
+			<div class="mes-nombre">Octubre</div>
+		</div>
+		<div class="mes" id="mes-11">
+			<div class="mes-nombre">Noviembre</div>
+		</div>
+		<div class="mes" id="mes-12">
+			<div class="mes-nombre">Diciembre</div>
+		</div>
+	</div>
+			
 	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

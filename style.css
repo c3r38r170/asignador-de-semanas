@@ -1,0 +1,73 @@
+body {
+  font-family: sans-serif;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 8%;
+  float: left;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+td, th {
+  border: 2px solid #969595;
+}
+
+.py-1 {
+  padding-top: 15px;
+}
+
+.anio {
+  /* @include borde();
+  padding:1px; */
+  display: flex;
+  background-color: #AAA;
+}
+
+.mes {
+  gap: 1px;
+  display: grid;
+  grid-template: "a a a" auto "b c d" auto/1.5fr 1fr 5fr;
+  width: 100%;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+.mes * { /* ! No div porque sobreescribe los demas. */
+  background: white;
+}
+
+.mes-12 .mes-contenido {
+  border-right: solid 1px #AAA;
+}
+
+.mes-nombre {
+  grid-area: a;
+  padding: 0.5rem;
+  background: #555;
+  color: white;
+}
+
+.mes-dato {
+  text-align: center;
+  font-size: smaller;
+}
+
+.mes-fecha {
+  background-color: #EEE;
+  border-left: solid 1px #AAA;
+}
+
+.mes-dia-D {
+  background-color: #EEE;
+}
+.mes-dia-D + div {
+  background-color: #EEE;
+}
+
+.mes-contenido {
+  height: 100%;
+  top: -1px;
+  position: relative;
+}/*# sourceMappingURL=style.css.map */

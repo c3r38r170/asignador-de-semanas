@@ -1,0 +1,81 @@
+$darkgray:#555;
+$gray:#AAA;
+$lightgray:#EEE;
+
+@mixin borde{
+	gap:1px;
+}
+@mixin bloqueadito{
+	background-color:$lightgray;
+}
+
+body {
+	font-family: sans-serif;
+}
+	.table{
+		border-collapse: collapse;
+		width: 8%;
+		float: left;
+		padding: 5px;
+		margin-left: 5px;
+	}
+		td,th{
+			border: 2px solid #969595;
+		}
+			.py-1{
+				padding-top: 15px;
+			}
+	.anio{
+		/* @include borde();
+		padding:1px; */
+
+		display: flex;
+		background-color: $gray;
+	}
+		.mes {
+			@include borde();
+
+			*{ /* ! No div porque sobreescribe los demas. */
+				background:white;
+			}
+
+			display: grid;
+			grid-template:
+					"a a a" auto
+					"b c d" auto / 1.5fr 1fr 5fr;
+			width: 100%;
+			height: min-content;
+		}
+			.mes-12{
+				.mes-contenido{
+					border-right: solid 1px $gray;
+				}
+			}
+			.mes-nombre {
+				grid-area: a;
+				padding:.5rem;
+				background:$darkgray;
+				color:white;
+			}
+			.mes-dato{
+				text-align:center;
+				font-size: smaller;
+			}
+				.mes-fecha{
+					@include bloqueadito();
+					border-left: solid 1px $gray;
+				}
+				.mes-dia{
+
+				}
+					.mes-dia-D{
+						&+div{
+							@include bloqueadito();
+						}
+						@include bloqueadito();
+					}
+				.mes-contenido{
+					height: 100%;
+					top: -1px;
+					position: relative;
+				}

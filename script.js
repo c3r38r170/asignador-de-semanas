@@ -58,13 +58,13 @@ function mes(fecha){
 }
 
 function recalcular(){
-	for(var i = 1; i <= 12; i++){
+	/* for(var i = 1; i <= 12; i++){
 		document.getElementById('mes-' + i).innerHTML = "";
-	}
+	} */
 	personas = [];
 	colores = [];
 	personas = document.getElementById('personas').value.replace(/\s/g,'').split(',');
-	colores = document.getElementById('colores').value.replace(/\s/g,'').split(',');
+	colores = document.getElementById('colores').value.replace(/\s/g,'').split(',').map(color=>[color,tinycolor(color).darken()]);
 	var yr = document.getElementById('yr').value;
 	console.log(personas);
 	console.log(colores);
@@ -80,7 +80,9 @@ function recalcular(){
 			calendario.push({
 			'mes_int' :  d.getUTCMonth() + 1,		//Este sirve para el indice de la tabla en el HTML
 			'mes' :  mes(d),		//Mes en letras	
-			'fecha' :  d.getUTCDate() + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
+			'fecha' :  d.getUTCDate(),// + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
+			letra:letra_dia(d),	//
+			numeroDiaSemana:d.getDay(),
 			'integrante' : personas[mod(semana(d),personas.length)],
 			'color' : colores[mod(semana(d),personas.length)]
 		});
@@ -88,23 +90,66 @@ function recalcular(){
 			calendario.push({
 			'mes_int' :  d.getUTCMonth() + 1,		//Este sirve para el indice de la tabla en el HTML
 			'mes' :  mes(d),		//Mes en letras	
-			'fecha' :  d.getUTCDate() + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
-			'integrante' : '',
-			'color' : '#444'
+			'fecha' :  d.getUTCDate(),// + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
+			letra:letra_dia(d),	//
+			'integrante' : ''
+			// ,
+			// 'color' : '#444'
 		});
 
 		}
 	}
 	console.log(calendario);
 	/*Se podrían usar web-components, pero esta es la forma mas "didáctica" que encontré*/
-	for(var fecha in calendario){
-		var str = `
-		<tr style="background-color: ${calendario[fecha].color ?? '#FFF'};">
-		<td>${calendario[fecha].fecha}</td>
-		<td>${calendario[fecha].integrante}</td>
-		</tr>
-		`;
-		document.getElementById('mes-' + calendario[fecha].mes_int).innerHTML += str;
+	for(var dia of calendario){
+		let celda={
+			classList:['mes-dato']
+		};
+		
+		if((dia.numeroDiaSemana==2 && dia.fecha!=1) || (dia.fecha==2 && ![1,5].includes(dia.numeroDiaSemana) &&dia.integrante) )
+			celda.innerText=dia.integrante;
+		if(dia.color){
+			let colorClaro=dia.color[0],bordeClaro='solid 2px '+colorClaro
+			let colorFuerte=dia.color[1],bordeFuerte='solid 2px '+colorFuerte;
+			celda.style={
+				backgroundColor:colorClaro,
+				borderRight:bordeFuerte,
+				borderLeft:bordeFuerte,
+				borderBottom:(dia.numeroDiaSemana==5 || [
+					'1,31'
+					,'2,28'
+					,'3,31'
+					,'4,30'
+					,'5,31'
+					,'6,30'
+					,'7,31'
+					,'8,31'
+					,'9,30'
+					,'10,31'
+					,'11,30'
+					,'12,31'
+				].includes(`${dia.mes_int},${dia.fecha}`))?
+					bordeFuerte
+					:bordeClaro
+			}
+			if(dia.numeroDiaSemana==1 || dia.letra=='L')
+				celda.style.borderTop=bordeFuerte;
+		}
+		if(dia.integrante)
+			celda.classList.push('mes-contenido');
+
+		addElement(
+			gEt('mes-'+dia.mes_int)
+			,['DIV',{
+				innerText:dia.fecha
+				,classList:['mes-dato','mes-fecha']
+			}]
+			,['DIV',{
+				innerText:dia.letra
+				,classList:['mes-dato','mes-dia','mes-dia-'+dia.letra]
+			}]
+			,['DIV',celda]
+		);
 	}
 }
 
