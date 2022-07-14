@@ -7,3 +7,5 @@ Un programa que asigna etiquetas intercalandolas a las semanas laborales de los 
  - Rotar etiquetas (/ colores)
  - Asociar etiquetas y colores
  - Limpiar un poco el código
+### ¡Cualquier sugerencia es bienvenida!
+Es preferente que no modifique mucho el flujo propuesto (el uso del estado actual de la aplicación) y que ofrezca buenos valores predeterminados (se pueda ignorar).
