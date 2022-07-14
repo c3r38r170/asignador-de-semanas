@@ -2,7 +2,7 @@ function mod(n, m) {
   return ((n % m) + m) % m;
 }
 
-let personas = [];
+let etiquetas = [];
 let colores = [];
 let muchos_colores = [
 '#EA7D97', 
@@ -61,12 +61,14 @@ function recalcular(){
 	/* for(var i = 1; i <= 12; i++){
 		document.getElementById('mes-' + i).innerHTML = "";
 	} */
-	personas = [];
+	for(let dato of [...SqS(".mes-dato",{n:ALL})])
+		dato.remove();
+	etiquetas = [];
 	colores = [];
-	personas = document.getElementById('personas').value.replace(/\s/g,'').split(',');
+	etiquetas = document.getElementById('personas').value.replace(/\s/g,'').split(',');
 	colores = document.getElementById('colores').value.replace(/\s/g,'').split(',').map(color=>[color,tinycolor(color).darken()]);
 	var yr = document.getElementById('yr').value;
-	console.log(personas);
+	console.log(etiquetas);
 	console.log(colores);
 	
 	var base = new Date(yr, 1, 1);
@@ -76,15 +78,15 @@ function recalcular(){
 	for (var d = new Date(base.getFullYear(), 0, 1); d <= ultimo_dia; d.setDate(d.getDate() + 1)) {
 		/*Saco los sabados y domingos (lo dejé con letras para que sea mas legible, pero le quita performance)*/
 		if(letra_dia(d) != 'S' && letra_dia(d) != 'D'){
-			console.log(mod(semana(d),personas.length));
+			console.log(mod(semana(d),etiquetas.length));
 			calendario.push({
 			'mes_int' :  d.getUTCMonth() + 1,		//Este sirve para el indice de la tabla en el HTML
 			'mes' :  mes(d),		//Mes en letras	
 			'fecha' :  d.getUTCDate(),// + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
 			letra:letra_dia(d),	//
 			numeroDiaSemana:d.getDay(),
-			'integrante' : personas[mod(semana(d),personas.length)],
-			'color' : colores[mod(semana(d),personas.length)]
+			'integrante' : etiquetas[mod(semana(d),etiquetas.length)],
+			'color' : colores[mod(semana(d),etiquetas.length)]
 		});
 		}else{
 			calendario.push({
@@ -102,11 +104,27 @@ function recalcular(){
 	console.log(calendario);
 	/*Se podrían usar web-components, pero esta es la forma mas "didáctica" que encontré*/
 	for(var dia of calendario){
+		let esUltimoDelMes=[
+			'1,31'
+			,'2,28'
+			,'3,31'
+			,'4,30'
+			,'5,31'
+			,'6,30'
+			,'7,31'
+			,'8,31'
+			,'9,30'
+			,'10,31'
+			,'11,30'
+			,'12,31'
+		].includes(`${dia.mes_int},${dia.fecha}`);
 		let celda={
 			classList:['mes-dato']
 		};
 		
-		if((dia.numeroDiaSemana==2 && dia.fecha!=1) || (dia.fecha==2 && ![1,5].includes(dia.numeroDiaSemana) &&dia.integrante) )
+		if(
+			(dia.numeroDiaSemana==2 && dia.fecha!=1 && !esUltimoDelMes)
+			|| (dia.fecha==2 && ![1,5].includes(dia.numeroDiaSemana) &&dia.integrante) )
 			celda.innerText=dia.integrante;
 		if(dia.color){
 			let colorClaro=dia.color[0],bordeClaro='solid 2px '+colorClaro
@@ -115,24 +133,11 @@ function recalcular(){
 				backgroundColor:colorClaro,
 				borderRight:bordeFuerte,
 				borderLeft:bordeFuerte,
-				borderBottom:(dia.numeroDiaSemana==5 || [
-					'1,31'
-					,'2,28'
-					,'3,31'
-					,'4,30'
-					,'5,31'
-					,'6,30'
-					,'7,31'
-					,'8,31'
-					,'9,30'
-					,'10,31'
-					,'11,30'
-					,'12,31'
-				].includes(`${dia.mes_int},${dia.fecha}`))?
+				borderBottom:(dia.numeroDiaSemana==5 || esUltimoDelMes)?
 					bordeFuerte
 					:bordeClaro
 			}
-			if(dia.numeroDiaSemana==1 || dia.letra=='L')
+			if(dia.numeroDiaSemana==1 || dia.fecha==1)
 				celda.style.borderTop=bordeFuerte;
 		}
 		if(dia.integrante)
