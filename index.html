@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+	<title>Turnos</title>
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+		}
+		.table{
+			border-collapse: collapse;
+			width: 8%;
+			float: left;
+			padding: 5px;
+			margin-left: 5px;
+		}
+		td,th{
+			border: 2px solid #969595;
+		}
+		.py-1{
+			padding-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div>			
+		<label>Personas <small><em>Separadas por coma</em></small></label>
+		<input type="text" autofocus style="width:  33%;" id="personas">
+	</div>
+	<div class="py-1"></div>
+	<div>
+		<label>Colores <small><em>Separados por coma</em></small></label>
+		<input type="text" style="width:  33%;" id="colores">
+	</div>
+	<div class="py-1"></div>
+	<div>
+		<label>Año</label>
+		<input type="number" value="2022" style="width:  33%;" id="yr">
+	</div>
+	<hr>
+	<button type="button" onclick="recalcular()">Calcular</button>
+	<button type="button" onclick="random_colors()">Colores Random</button>
+	<div class="py-1"></div>
+	<hr>
+	<div class="py-1"></div>
+	<table class='table'><tbody id="mes-1"><tr><th colspan="2">Enero</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-2"><tr><th colspan="2">Febrero</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-3"><tr><th colspan="2">Marzo</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-4"><tr><th colspan="2">Abril</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-5"><tr><th colspan="2">Mayo</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-6"><tr><th colspan="2">Junio</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-7"><tr><th colspan="2">Julio</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-8"><tr><th colspan="2">Agosto</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-9"><tr><th colspan="2">Septiembre</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-10"><tr><th colspan="2">Octubre</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-11"><tr><th colspan="2">Noviembre</th></tr></tbody></table>			
+	<table class='table'><tbody id="mes-12"><tr><th colspan="2">Diciembre</th></tr></tbody></table>			
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
