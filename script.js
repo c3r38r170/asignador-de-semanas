@@ -65,6 +65,9 @@ function recalcular(){
 		dato.remove();
 	etiquetas = [];
 	colores = [];
+	
+	gEt('titulo-etiqueta').innerText=gEt('titulo').value;
+	
 	etiquetas = document.getElementById('personas').value.replace(/\s/g,'').split(',');
 	colores = document.getElementById('colores').value.replace(/\s/g,'').split(',').map(color=>[color,tinycolor(color).darken()]);
 	var yr = document.getElementById('yr').value;
@@ -78,15 +81,16 @@ function recalcular(){
 	for (var d = new Date(base.getFullYear(), 0, 1); d <= ultimo_dia; d.setDate(d.getDate() + 1)) {
 		/*Saco los sabados y domingos (lo dejé con letras para que sea mas legible, pero le quita performance)*/
 		if(letra_dia(d) != 'S' && letra_dia(d) != 'D'){
-			console.log(mod(semana(d),etiquetas.length));
+			let indiceSemana=mod(semana(d)-1,etiquetas.length); //! Sin el -1 empieza de 1 y no de 0.
+			console.log(indiceSemana);
 			calendario.push({
 			'mes_int' :  d.getUTCMonth() + 1,		//Este sirve para el indice de la tabla en el HTML
 			'mes' :  mes(d),		//Mes en letras	
 			'fecha' :  d.getUTCDate(),// + " [" + letra_dia(d) + "]",		//Fecha en número + Letra del día de la semana
 			letra:letra_dia(d),	//
 			numeroDiaSemana:d.getDay(),
-			'integrante' : etiquetas[mod(semana(d),etiquetas.length)],
-			'color' : colores[mod(semana(d),etiquetas.length)]
+			'integrante' : etiquetas[indiceSemana],
+			'color' : colores[indiceSemana]
 		});
 		}else{
 			calendario.push({

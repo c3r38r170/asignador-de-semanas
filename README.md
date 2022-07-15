@@ -1,7 +1,7 @@
 # asignador-de-semanas
 Un programa que asigna etiquetas intercalandolas a las semanas laborales de los años.
 ## TODO
- - Título
+ - Colapsar parámetros
  - Preparación para impresión
  - Rotar etiquetas (/ colores)
  - Asociar etiquetas y colores

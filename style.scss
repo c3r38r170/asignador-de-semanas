@@ -25,12 +25,18 @@ body {
 			.py-1{
 				padding-top: 15px;
 			}
+	#titulo-etiqueta{
+		margin-bottom: .5rem;
+		color:$darkgray;
+	}
 	.anio{
 		/* @include borde();
 		padding:1px; */
 
 		display: flex;
 		background-color: $gray;
+		border-right: solid 1px $gray;
+
 	}
 		.mes {
 			@include borde();
