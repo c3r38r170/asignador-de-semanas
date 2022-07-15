@@ -10,31 +10,34 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js" integrity="sha512-+aXA9mgbUvFe0ToTlbt8/3vT7+nOgUmFw29wfFCsGoh8AZMRSU0p4WtOvC1vkF2JBrndPN2TuNZsHPAKPPxe8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-	<div>			
-		<label>Personas <small><em>Separadas por coma</em></small></label>
-		<input type="text" autofocus style="width:  33%;" id="personas">
-	</div>
-	<div class="py-1"></div>
-	<div>
-		<label>Colores <small><em>Separados por coma</em></small></label>
-		<input type="text" style="width:  33%;" id="colores">
-	</div>
-	<div class="py-1"></div>
-	<div>
-		<label>Año</label>
-		<input type="number" value="2022" style="width:  33%;" id="yr">
-	</div>
-	<div class="py-1"></div>
-	<div>
-		<label>Título</label>
-		<input id="titulo">
-	</div>
-	<hr>
-	<button type="button" onclick="recalcular()">Calcular</button>
-	<button type="button" onclick="random_colors()">Colores Random</button>
-	<div class="py-1"></div>
-	<hr>
-	<div class="py-1"></div>
+	<details open>
+		<summary>Parámetros</summary>
+		<div>
+			<label>Personas <small><em>Separadas por coma</em></small></label>
+			<input type="text" autofocus style="width:  33%;" id="personas">
+		</div>
+		<div class="py-1"></div>
+		<div>
+			<label>Colores <small><em>Separados por coma</em></small></label>
+			<input type="text" style="width:  33%;" id="colores">
+		</div>
+		<div class="py-1"></div>
+		<div>
+			<label>Año</label>
+			<input type="number" value="2022" style="width:  33%;" id="yr">
+		</div>
+		<div class="py-1"></div>
+		<div>
+			<label>Título</label>
+			<input id="titulo">
+		</div>
+		<hr>
+		<button type="button" onclick="recalcular()">Calcular</button>
+		<button type="button" onclick="random_colors()">Colores Random</button>
+		<div class="py-1"></div>
+		<hr>
+		<div class="py-1"></div>
+	</details>
 	<h1 id="titulo-etiqueta"></h1>
 	<div class="anio">
 		<div class="mes" id="mes-1">
